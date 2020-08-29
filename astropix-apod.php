@@ -1,6 +1,7 @@
 <?php
 
 /**
+ *
  * @link              https://www.riccardogiovarelli.it/
  * @since             1.0.0
  * @package           Astropix_Apod
@@ -12,79 +13,72 @@
  * Author:            Riccardo Giovarelli
  * Author URI:        https://www.riccardogiovarelli.it/
  * License:           GPL-3.0
+ * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       astropix-apod
  * Domain Path:       /languages
  */
 
- // The widget class
-class Astropix_Apod extends WP_Widget {
-
-	// Main constructor
-	public function __construct() {
-		parent::__construct(
-			'Astropix_Apod',
-			__( 'Astropix Apod', 'text_domain' ),
-			array(
-				'customize_selective_refresh' => true,
-			)
-		);
-	}
-
-	// The widget form (for the backend )
-	public function form( $instance ) {
-
-		// Set widget defaults
-		$defaults = array(
-			'rss_url'    => '',
-		);
-		
-		// Parse current settings with defaults
-		extract( wp_parse_args( ( array ) $instance, $defaults ) ); ?>
-
-		<?php // RSS url ?>
-		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'rss_url' ) ); ?>"><?php _e( 'RSS url', 'text_domain' ); ?></label>
-			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'rss_url' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'rss_url' ) ); ?>" type="text" value="<?php echo esc_attr( $rssUrl ); ?>" />
-		</p>
-
-	<?php }
-
-	// Update widget settings
-	public function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-		$instance['rss_url']    = isset( $new_instance['rss_url'] ) ? wp_strip_all_tags( $new_instance['rss_url'] ) : '';
-		return $instance;
-	}
-
-	// Display the widget
-	public function widget( $args, $instance ) {
-
-		extract( $args );
-
-		// Check the widget options
-		$rssUrl    = isset( $instance['rss_url'] ) ? apply_filters( 'widget_rss_url', $instance['rss_url'] ) : '';
-
-		// WordPress core before_widget hook (always include )
-		echo $before_widget;
-
-		// Display the widget
-		echo '<div class="widget-text wp_widget_plugin_box">';
-
-		// Display RSS url if defined
-		if ( $rssUrl ) {
-			echo $before_title . $rssUrl . $after_title;
-		}
-
-		echo '</div>';
-
-		// WordPress core after_widget hook (always include )
-		echo $after_widget;
-	}
-
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
 }
 
-// Register the widget
-function my_register_custom_widget() {
-	register_widget( 'Astropix_Apod' );
+/**
+ * Currently plugin version.
+ * Start at version 1.0.0 and use SemVer - https://semver.org
+ * Rename this for your plugin and update it as you release new versions.
+ */
+define( 'PLUGIN_ASTROPIX_APOD_VERSION', '1.0.0' );
+
+/**
+ * The code that runs during plugin activation.
+ * This action is documented in includes/class-astropix-apod-activator.php
+ */
+function activate_astropix_apod() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-astropix-apod-activator.php';
+	Astropix_Apod_Activator::activate();
 }
-add_action( 'widgets_init', 'my_register_custom_widget' );
+
+/**
+ * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-astropix-apod-deactivator.php
+ */
+function deactivate_astropix_apod() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-astropix-apod-deactivator.php';
+	Astropix_Apod_Deactivator::deactivate();
+}
+
+register_activation_hook( __FILE__, 'activate_astropix_apod' );
+register_deactivation_hook( __FILE__, 'deactivate_astropix_apod' );
+
+
+// Register shortcode
+require plugin_dir_path( __FILE__ ) . 'includes/class-astropix-apod-shortcode.php';
+function astropix_apod_render($atts, $content, $tag) {	 
+	return Astropix_Apod_Shortcode::astropix_apod_render($atts, $content, $tag);
+}
+add_shortcode('astropix-apod', 'astropix_apod_render');
+
+
+/**
+ * The core plugin class that is used to define internationalization,
+ * admin-specific hooks, and public-facing site hooks.
+ */
+require plugin_dir_path( __FILE__ ) . 'includes/class-astropix-apod.php';
+
+/**
+ * Begins execution of the plugin.
+ *
+ * Since everything within the plugin is registered via hooks,
+ * then kicking off the plugin from this point in the file does
+ * not affect the page life cycle.
+ *
+ * @since    1.0.0
+ */
+function run_astropix_apod() {
+
+	$plugin = new Astropix_Apod();
+	$plugin->run();
+
+}
+run_astropix_apod();
