@@ -3,27 +3,27 @@
 /**
  * @link              https://www.riccardogiovarelli.it/
  * @since             1.0.0
- * @package           Astronomy_Picture_Of_The_Day
+ * @package           Astropix_Apod
  *
  * @wordpress-plugin
- * Plugin Name:       Astronomy Picture of the Day
+ * Plugin Name:       Astropix Apod
  * Plugin URI:        https://www.riccardogiovarelli.it/
  * Version:           1.0.0
  * Author:            Riccardo Giovarelli
  * Author URI:        https://www.riccardogiovarelli.it/
  * License:           GPL-3.0
- * Text Domain:       astronomy-picture-of-the-day
+ * Text Domain:       astropix-apod
  * Domain Path:       /languages
  */
 
  // The widget class
-class Astronomy_Picture_Of_The_Day extends WP_Widget {
+class Astropix_Apod extends WP_Widget {
 
 	// Main constructor
 	public function __construct() {
 		parent::__construct(
-			'astronomy_picture_of_the_day',
-			__( 'Astronomy Picture Of The Day', 'text_domain' ),
+			'Astropix_Apod',
+			__( 'Astropix Apod', 'text_domain' ),
 			array(
 				'customize_selective_refresh' => true,
 			)
@@ -85,6 +85,6 @@ class Astronomy_Picture_Of_The_Day extends WP_Widget {
 
 // Register the widget
 function my_register_custom_widget() {
-	register_widget( 'Astronomy_Picture_Of_The_Day' );
+	register_widget( 'Astropix_Apod' );
 }
 add_action( 'widgets_init', 'my_register_custom_widget' );

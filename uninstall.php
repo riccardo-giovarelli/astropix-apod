@@ -22,7 +22,7 @@
  * @link       https://www.riccardogiovarelli.it/
  * @since      1.0.0
  *
- * @package    Astronomy_Picture_Of_The_Day
+ * @package    Astropix_Apod
  */
 
 // If uninstall not called from WordPress, then exit.
