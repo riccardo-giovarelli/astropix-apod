@@ -53,9 +53,9 @@ register_deactivation_hook( __FILE__, 'deactivate_astropix_apod' );
 
 
 // Register shortcode
-require plugin_dir_path( __FILE__ ) . 'includes/class-astropix-apod-shortcode.php';
+require plugin_dir_path( __FILE__ ) . 'resources/class-astropix-apod.php';
 function astropix_apod_render($atts, $content, $tag) {	 
-	return Astropix_Apod_Shortcode::astropix_apod_render($atts, $content, $tag);
+	return Astropix_Apod_Rss::astropix_apod_render($atts, $content, $tag);
 }
 add_shortcode('astropix-apod', 'astropix_apod_render');
 
