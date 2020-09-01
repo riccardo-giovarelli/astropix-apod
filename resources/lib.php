@@ -60,7 +60,7 @@ function get_apod_html($rss_data) {
                 break;
         }
         $html .= '<div>';
-            $html .= !empty($rss_data['alt_text']) ? $rss_data['alt_text'] : __( 'no-content-from-rss', 'astropix-apod' );
+            $html .= empty($rss_data['alt_text']) ? $rss_data['alt_text'] : __( 'no-content-from-rss', 'astropix-apod' );
         $html .= '</div>';
     $html .= '</div>';
 

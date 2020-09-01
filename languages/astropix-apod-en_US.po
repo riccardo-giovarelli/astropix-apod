@@ -5,9 +5,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: astropix-apod\n"
-"Language: it\n"
+"Language: en\n"
 
 #: 
 msgid "no-content-from-rss"
-msgstr "Nessun contenuto disponibile oggi"
+msgstr "No content available today"
 

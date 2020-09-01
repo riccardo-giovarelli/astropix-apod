@@ -1,2 +1,0 @@
-msgid "no-content-from-rss"
-msgstr "No content available"

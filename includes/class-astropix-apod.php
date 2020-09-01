@@ -75,17 +75,13 @@ class Astropix_Apod {
 		$this->astropix_apod = 'astropix-apod';
 
 		$this->load_dependencies();
-		$this->set_locale();
-
+		
+		// Load textdomain
+		load_plugin_textdomain('astropix-apod', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
 	}
 
 	/**
 	 * Load the required dependencies for this plugin.
-	 *
-	 * Include the following files that make up the plugin:
-	 *
-	 * - Astropix_Apod_Loader. Orchestrates the hooks of the plugin.
-	 * - Astropix_Apod_i18n. Defines internationalization functionality.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -94,38 +90,8 @@ class Astropix_Apod {
 	 * @access   private
 	 */
 	private function load_dependencies() {
-
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-astropix-apod-loader.php';
-
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-astropix-apod-i18n.php';
-
 		$this->loader = new Astropix_Apod_Loader();
-
-	}
-
-	/**
-	 * Define the locale for this plugin for internationalization.
-	 *
-	 * Uses the Astropix_Apod_i18n class in order to set the domain and to register the hook
-	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function set_locale() {
-
-		$plugin_i18n = new Astropix_Apod_i18n();
-
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
