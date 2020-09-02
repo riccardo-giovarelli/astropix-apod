@@ -1,0 +1,31 @@
+.apod_container {
+    background-color: lightgray;
+    color: #404040;
+    padding: 20px 20px 10px 20px;
+    max-width: 100px;
+
+    .apod_title {
+        text-align: center;
+        font-size: 1.6em;
+    }
+
+    .apod_media {
+        text-align: center;
+        margin: 10px 0px;
+        width: 100%;
+    }
+
+    .apod_label {
+        background-color: #404040;
+        color: white;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 0.9em;
+    }
+
+    .apod_page_url {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 0.8em;
+    }
+}

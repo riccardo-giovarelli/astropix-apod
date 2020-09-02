@@ -8,6 +8,26 @@ msgstr ""
 "Language: it\n"
 
 #: 
-msgid "no-content-from-rss"
-msgstr "Nessun contenuto disponibile oggi"
+msgid "No content available"
+msgstr "Nessun contenuto disponibile"
+
+#: 
+msgid "No page url available"
+msgstr "Url della pagina non disponibile"
+
+#: 
+msgid "To see the original post click"
+msgstr "Per vedere il post originale cliccare"
+
+#: 
+msgid "here"
+msgstr "qui"
+
+#: 
+msgid "Picture of the day"
+msgstr "Immagine del giorno"
+
+#: 
+msgid "Video of the day"
+msgstr "Video del giorno"
 
