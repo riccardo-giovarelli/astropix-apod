@@ -17,27 +17,13 @@
 
 // Copyright 2020 Riccardo Giovarelli <riccardo.giovarelli@gmail.com>
 
+
 /**
- * Fired during plugin deactivation.
- *
- * This class defines all code necessary to run during the plugin's deactivation.
- *
- * @since      1.0.0
- * @package    Astropix_Apod
- * @subpackage Astropix_Apod/includes
- * @author     Riccardo Giovarelli <riccardo.giovarelli@gmail.com>
+ * Defines all code necessary to run during the plugin's deactivation
  */
-class Astropix_Apod_Deactivator {
-
-	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
-	 *
-	 * @since    1.0.0
-	 */
-	public static function deactivate() {
-
+class Astropix_Apod_Deactivator
+{
+	public static function deactivate()
+	{
 	}
-
 }

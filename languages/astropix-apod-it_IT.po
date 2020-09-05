@@ -24,10 +24,18 @@ msgid "here"
 msgstr "qui"
 
 #: 
+msgid "Astronomy Picture of the Day"
+msgstr "Astronomy Picture of the Day"
+
+#: 
 msgid "Picture of the day"
 msgstr "Immagine del giorno"
 
 #: 
-msgid "Video of the day"
-msgstr "Video del giorno"
+msgid "Please contact the plugin developer"
+msgstr "Si prega di contattare lo sviluppatore del plugin"
+
+#: 
+msgid "Error retrieving the picture of the day"
+msgstr "Impossibile recuperare l'immagine del giorno"
 

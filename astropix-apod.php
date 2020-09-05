@@ -17,11 +17,11 @@
 
 // Copyright 2020 Riccardo Giovarelli <riccardo.giovarelli@gmail.com>
 
+
 /**
  *
- * @wordpress-plugin
  * Plugin Name:       Astropix Apod
- * Version:           0.0.1
+ * Version:           1.0.0
  * Author:            Riccardo Giovarelli
  * Author URI:        https://www.riccardogiovarelli.it/
  * Description:		  Show Astronomy Picture of the Day by Nasa with a simple shortcode
@@ -31,67 +31,73 @@
  * Domain Path:       /languages
  */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+
+// Abort if this file is called directly
+if (!defined('WPINC')) {
 	die;
 }
 
-/**
- * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
- */
-define( 'PLUGIN_ASTROPIX_APOD_VERSION', '1.0.0' );
+// Currently plugin version
+define('PLUGIN_ASTROPIX_APOD_VERSION', '1.0.0');
+
+// Required files
+require plugin_dir_path(__FILE__) . 'resources/class-astropix-apod.php';
+require plugin_dir_path(__FILE__) . 'includes/class-astropix-apod.php';
+
+
 
 /**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-astropix-apod-activator.php
+ * Plugin activation
  */
-function activate_astropix_apod() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-astropix-apod-activator.php';
+function activate_astropix_apod()
+{
+	require_once plugin_dir_path(__FILE__) . 'includes/class-astropix-apod-activator.php';
 	Astropix_Apod_Activator::activate();
 }
 
+// Register plugin activation fucntion
+register_activation_hook(__FILE__, 'activate_astropix_apod');
+
+
+
 /**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-astropix-apod-deactivator.php
+ * Plugin deactivation
  */
-function deactivate_astropix_apod() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-astropix-apod-deactivator.php';
+function deactivate_astropix_apod()
+{
+	require_once plugin_dir_path(__FILE__) . 'includes/class-astropix-apod-deactivator.php';
 	Astropix_Apod_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_astropix_apod' );
-register_deactivation_hook( __FILE__, 'deactivate_astropix_apod' );
+// Register plugin deactivation fucntion
+register_deactivation_hook(__FILE__, 'deactivate_astropix_apod');
 
 
-// Register shortcode
-require plugin_dir_path( __FILE__ ) . 'resources/class-astropix-apod.php';
-function astropix_apod_render($atts, $content, $tag) {	 
+
+/**
+ * Plugin render
+ */
+function astropix_apod_render($atts, $content, $tag)
+{
 	return Astropix_Apod_Rss::astropix_apod_render($atts, $content, $tag);
 }
+
+// Create shortcode to render plugin output
 add_shortcode('astropix-apod', 'astropix_apod_render');
 
 
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-astropix-apod.php';
 
 /**
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
+ * Begins execution of the plugin
  */
-function run_astropix_apod() {
+function run_astropix_apod()
+{
 
 	$plugin = new Astropix_Apod();
 	$plugin->run();
-
 }
+
+
+
+// Go!
 run_astropix_apod();

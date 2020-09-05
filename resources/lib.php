@@ -17,13 +17,15 @@
 
 // Copyright 2020 Riccardo Giovarelli <riccardo.giovarelli@gmail.com>
 
+
 /**
  * @param   string  $rss_url    Url of the rss feed
  * @param   string  $base_url   Url base of the site Astronomy Picture of the Day by Nasa
  * 
  * @return  array   Informations about picture of the day
  */
-function get_rss_data($rss_url, $base_url) {
+function get_rss_data($rss_url, $base_url)
+{
 
     // Regex
     $page_regex = '/href="(?<page_url>[^\"]+)"/i';
@@ -32,7 +34,7 @@ function get_rss_data($rss_url, $base_url) {
     $alt_text = '/alt="(?<alt_text>[^\"]+)"/i';
 
     // Get rss content
-    $rss_content = file_get_contents($rss_url);
+    $rss_content = get_html_page($rss_url, 10);
     if ($rss_content === false) return false;
 
     // Get last post url
@@ -40,7 +42,7 @@ function get_rss_data($rss_url, $base_url) {
     $result['post_url'] = reset($matched_page_url['page_url']);
 
     // Get page content
-    $page_content = file_get_contents(reset($matched_page_url['page_url']));
+    $page_content = get_html_page(reset($matched_page_url['page_url']), 10);
     if ($page_content === false) return false;
 
     // Get image url
@@ -53,65 +55,106 @@ function get_rss_data($rss_url, $base_url) {
     }
 
     // Get image alt text
-    $result['alt_text'] = preg_match_all($alt_text, $rss_content, $matched_alt_text) === false ? 
-        'Astronomy Picture of the Day' : 
+    $result['alt_text'] = preg_match_all($alt_text, $rss_content, $matched_alt_text) === false ?
+        __('Astronomy Picture of the Day') :
         reset($matched_alt_text['alt_text']);
 
     return $result;
 }
+
 
 /**
  * @param   string  $rss_data    Informations about picture of the day
  * 
  * @return  array   Html for shortcode
  */
-function get_apod_html($rss_data) {
-
+function build_apod_html($rss_data)
+{
     wp_enqueue_style("astropix-apod-style", plugins_url("astropix-apod/css/style.css"), array(), time(), "all");
 
     $title = "NASA - Astronomy Picture of the Day";
-
     $html = '';
+
     $html .= '<div class="apod_container">';
     $html .= '<div class="apod_title" title="' . $title . '">';
-        $html .= $title;
+    $html .= $title;
     $html .= '</div>';
-    $html .= '<div class="apod_media">';
-        switch (true) {
-            case(isset($rss_data['image'])):
-                $html .= '<img src="' . $rss_data['image'] . '" alt="' . __( 'Picture of the day', 'astropix-apod' ) . '">';
-                break;
-            case(isset($rss_data['video'])):
-                $html .= '<iframe src="' . $rss_data['video'] . '" height="315" title="' . __( 'No content available today', 'astropix-apod' ) . '">';
-                $html .= '</iframe>';
-                break;
-            default:
-                $html .= '<div>' . $rss_data['alt_text'] . '</div>';
-                break;
-        }
-    $html .= '</div>';
-        $html .= '<div class="apod_label">';
-            $html .= !empty($rss_data['alt_text']) ? $rss_data['alt_text'] : __( 'No content available today', 'astropix-apod' );
-        $html .= '</div>';
-        $html .= '<div class="apod_page_url">';
-            $html .= !empty($rss_data['post_url']) ? get_link_code($rss_data['post_url']) : __( 'Video of the day', 'astropix-apod' );
-        $html .= '</div>';
+
+    switch (true) {
+        case ($rss_data !== false):
+            $html .= '<div class="apod_media">';
+            $html .= build_media_code($rss_data);
+            $html .= '</div>';
+            $html .= '<div class="apod_label">';
+            $html .= '<div>' . $rss_data['alt_text'] . '</div>';
+            $html .= '</div>';
+            $html .= '<div class="apod_page_url">';
+            $html .= build_link_code($rss_data['post_url']);
+            $html .= '</div>';
+            break;
+        case ($rss_data === false):
+            $html .= '<div class="apod_error">';
+            $html .= '<div>' . __('Error retrieving the picture of the day', 'astropix-apod') . '</div>';
+            $html .= '<div>' . __('Please contact the plugin developer', 'astropix-apod') . '</div>';
+            $html .= '</div>';
+            break;
+    }
+
     $html .= '</div>';
 
     return $html;
 }
+
 
 /**
  * @param   string  $url    Url of the page
  * 
  * @return  array   Html for page link
  */
-function get_link_code($url) {
+function build_link_code($url)
+{
     $html = '';
-    $html .= __( 'To see the original post click', 'astropix-apod' );
+
+    $html .= __('To see the original post click', 'astropix-apod');
     $html .= ' ';
     $html .= '<a href="' . $url . '" target="_blank">';
-    $html .= __( 'here', 'astropix-apod' );
+    $html .= __('here', 'astropix-apod');
     $html .= '</a>';
+
     return $html;
+}
+
+
+/**
+ * @param   string  $rss_data    Informations about picture of the day
+ * 
+ * @return  array   Html for page media
+ */
+function build_media_code($rss_data)
+{
+    if (isset($rss_data['image'])) {
+        return '<img src="' . $rss_data['image'] . '" alt="' . __('Picture of the day', 'astropix-apod') . '">';
+    } else if (isset($rss_data['video'])) {
+        return '<iframe src="' . $rss_data['video'] . '" height="315" title="' . __('Picture of the day', 'astropix-apod') . '"></iframe>';
+    }
+}
+
+
+/**
+ * @param   string  $url    Url of the page to get
+ * 
+ * @return  string|boolean   Page content on success, false otherwise
+ */
+function get_html_page($url, $timeout = 30)
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+    $results = curl_exec($ch);
+    curl_close($ch);
+
+    return $results;
 }

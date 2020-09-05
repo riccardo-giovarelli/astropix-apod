@@ -17,19 +17,29 @@
 
 // Copyright 2020 Riccardo Giovarelli <riccardo.giovarelli@gmail.com>
 
-require plugin_dir_path( __FILE__ ) . '/lib.php';
+require plugin_dir_path(__FILE__) . '/lib.php';
 
-class Astropix_Apod_Rss {
+/**
+ * Manage the rss for the plugin 
+ */
+class Astropix_Apod_Rss
+{
 
-    private static $rss_url = "https://apod.nasa.gov/apod.rss";
-    private static $base_url = "https://apod.nasa.gov/apod/";
+    const RSS_URL = "https://apod.nasa.gov/apod.rss";
+    const BASE_URL = "https://apod.nasa.gov/apod/";
 
-    public static function astropix_apod_render($atts, $content, $tag) {
+    /**
+     * Render the rss content
+     */
+    public static function astropix_apod_render()
+    {
 
-        $rss_data = get_rss_data(Astropix_Apod_Rss::$rss_url, Astropix_Apod_Rss::$base_url);
+        // Get informations about picture of the day
+        $rss_data = get_rss_data(self::RSS_URL, self::BASE_URL);
 
-        $html = get_apod_html($rss_data);
-         
+        // Build the html code to show
+        $html = build_apod_html($rss_data);
+
         return $html;
     }
 }

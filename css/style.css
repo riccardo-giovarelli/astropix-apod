@@ -1,5 +1,5 @@
 .apod_container {
-  background-color: lightgray;
+  background-color: #D0D0D0;
   color: #404040;
   padding: 20px 20px 10px 20px;
   max-width: 100px;
@@ -18,7 +18,7 @@
 
 .apod_container .apod_label {
   background-color: #404040;
-  color: white;
+  color: #FFFFFF;
   text-align: center;
   margin-top: 10px;
   font-size: 0.9em;
@@ -28,5 +28,16 @@
   text-align: center;
   margin-top: 10px;
   font-size: 0.8em;
+}
+
+.apod_container .apod_error {
+  text-align: center;
+  margin-top: 30px;
+  padding: 20px 0px;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: #900000;
+  font-size: 1em;
+  color: #900000;
 }
 /*# sourceMappingURL=style.css.map */
