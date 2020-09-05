@@ -26,7 +26,6 @@
  */
 function get_rss_data($rss_url, $base_url)
 {
-
     // Regex
     $page_regex = '/href="(?<page_url>[^\"]+)"/i';
     $img_regex = '/img\s*src="(?<img_url>[^\"]+)"/i';
@@ -61,7 +60,6 @@ function get_rss_data($rss_url, $base_url)
 
     return $result;
 }
-
 
 /**
  * @param   string  $rss_data    Informations about picture of the day
@@ -105,7 +103,6 @@ function build_apod_html($rss_data)
     return $html;
 }
 
-
 /**
  * @param   string  $url    Url of the page
  * 
@@ -124,7 +121,6 @@ function build_link_code($url)
     return $html;
 }
 
-
 /**
  * @param   string  $rss_data    Informations about picture of the day
  * 
@@ -138,7 +134,6 @@ function build_media_code($rss_data)
         return '<iframe src="' . $rss_data['video'] . '" height="315" title="' . __('Picture of the day', 'astropix-apod') . '"></iframe>';
     }
 }
-
 
 /**
  * @param   string  $url    Url of the page to get

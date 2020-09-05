@@ -25,5 +25,8 @@ class Astropix_Apod_Deactivator
 {
 	public static function deactivate()
 	{
+		/////////////////////////
+		// Deactivation action //
+		/////////////////////////
 	}
 }

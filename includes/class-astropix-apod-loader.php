@@ -26,10 +26,8 @@ class Astropix_Apod_Loader
 	protected $actions;
 	protected $filters;
 
-
 	public function __construct()
 	{
-
 		$this->actions = array();
 		$this->filters = array();
 	}
@@ -80,7 +78,6 @@ class Astropix_Apod_Loader
 	 */
 	private function add($hooks, $hook, $component, $callback, $priority, $accepted_args)
 	{
-
 		$hooks[] = array(
 			'hook'          => $hook,
 			'component'     => $component,
@@ -97,7 +94,6 @@ class Astropix_Apod_Loader
 	 */
 	public function run()
 	{
-
 		foreach ($this->filters as $hook) {
 			add_filter($hook['hook'], array($hook['component'], $hook['callback']), $hook['priority'], $hook['accepted_args']);
 		}

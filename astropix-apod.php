@@ -44,8 +44,6 @@ define('PLUGIN_ASTROPIX_APOD_VERSION', '1.0.0');
 require plugin_dir_path(__FILE__) . 'resources/class-astropix-apod.php';
 require plugin_dir_path(__FILE__) . 'includes/class-astropix-apod.php';
 
-
-
 /**
  * Plugin activation
  */
@@ -57,8 +55,6 @@ function activate_astropix_apod()
 
 // Register plugin activation fucntion
 register_activation_hook(__FILE__, 'activate_astropix_apod');
-
-
 
 /**
  * Plugin deactivation
@@ -72,8 +68,6 @@ function deactivate_astropix_apod()
 // Register plugin deactivation fucntion
 register_deactivation_hook(__FILE__, 'deactivate_astropix_apod');
 
-
-
 /**
  * Plugin render
  */
@@ -85,19 +79,14 @@ function astropix_apod_render($atts, $content, $tag)
 // Create shortcode to render plugin output
 add_shortcode('astropix-apod', 'astropix_apod_render');
 
-
-
 /**
  * Begins execution of the plugin
  */
 function run_astropix_apod()
 {
-
 	$plugin = new Astropix_Apod();
 	$plugin->run();
 }
-
-
 
 // Go!
 run_astropix_apod();

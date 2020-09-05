@@ -17,8 +17,8 @@
 
 // Copyright 2020 Riccardo Giovarelli <riccardo.giovarelli@gmail.com>
 
-// If uninstall not called from WordPress, then exit.
 
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+// If uninstall not called from WordPress, then exit.
+if (!defined('WP_UNINSTALL_PLUGIN')) {
 	exit;
 }

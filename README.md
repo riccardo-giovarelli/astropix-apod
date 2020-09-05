@@ -1,27 +1,27 @@
-# Wordpress plugin: Astronomy picture of the day
+# Wordpress plugin: Astropix Apod
 
 ## About the plugin
-Show the Astronomy picture of the day by Nasa through a simple shortcode
+Show the __Astronomy picture of the day__ by _Nasa_ through a simple shortcode
 
 ## Installation
-* Download or clone the repository
-* Compress all files and folders (except Git folders) in a zip file with the name of **_astropix-apod.zip_**
-* Install the plugin on Wordpress using the WordPress admin plugin upload
+1. Download or clone the repository
+2. Compress all files and folders (except Git folders) in a zip file with the name of **_astropix-apod.zip_**
+3. Install the plugin on Wordpress using the WordPress Admin Plugin Upload
 
 ## Use
-* Simply include the shortcode [astropix-apod] in your page or post
+Simply include the shortcode `[astropix-apod]` in your page or post
 
 ## Main requirements
 
-* WordPress 5.5+
+WordPress 5.5+
 
 ## Authors
 
 Riccardo Giovarelli
 
-Email: riccardo.giovarelli@gmail.com
-
-Web: https://www.riccardogiovarelli.it/
+## Contacts
+* Email: riccardo.giovarelli@gmail.com
+* Web: [RG-WEB](https://www.riccardogiovarelli.it)
 
 ## License
 

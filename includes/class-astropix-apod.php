@@ -23,11 +23,9 @@
  */
 class Astropix_Apod
 {
-
 	protected $loader;
 	protected $astropix_apod;
 	protected $version;
-
 
 	/**
 	 * Class constructor

@@ -25,5 +25,8 @@ class Astropix_Apod_Activator
 {
 	public static function activate()
 	{
+		///////////////////////
+		// Activation action //
+		///////////////////////
 	}
 }
