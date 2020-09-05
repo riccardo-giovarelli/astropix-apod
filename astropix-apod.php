@@ -19,8 +19,8 @@
 
 
 /**
- *
  * Plugin Name:       Astropix Apod
+ * Plugin URI:        https://github.com/riccardo-giovarelli/wordpress-astropix-apod
  * Version:           1.0.0
  * Author:            Riccardo Giovarelli
  * Author URI:        https://www.riccardogiovarelli.it/
