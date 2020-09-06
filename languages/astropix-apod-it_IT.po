@@ -39,3 +39,6 @@ msgstr "Si prega di contattare lo sviluppatore del plugin"
 msgid "Error retrieving the picture of the day"
 msgstr "Impossibile recuperare l'immagine del giorno"
 
+#: 
+msgid "Original post"
+msgstr "Post originale"

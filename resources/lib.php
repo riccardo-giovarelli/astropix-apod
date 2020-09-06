@@ -70,12 +70,16 @@ function build_apod_html($rss_data)
 {
     wp_enqueue_style("astropix-apod-style", plugins_url("astropix-apod/css/style.css"), array(), time(), "all");
 
-    $title = "NASA - Astronomy Picture of the Day";
+    $title = "Astronomy Picture of the Day";
+    $subtitle = 'NASA - ' . date("j/n/Y");
     $html = '';
 
-    $html .= '<div class="apod_container">';
-    $html .= '<div class="apod_title" title="' . $title . '">';
+    $html .= '<div class="apod_container" style="border-color">';
+    $html .= '<div role="heading" aria-level="1" class="apod_title">';
     $html .= $title;
+    $html .= '</div>';
+    $html .= '<div role="heading" aria-level="2" class="apod_date">';
+    $html .= $subtitle;
     $html .= '</div>';
 
     switch (true) {
@@ -84,14 +88,14 @@ function build_apod_html($rss_data)
             $html .= build_media_code($rss_data);
             $html .= '</div>';
             $html .= '<div class="apod_label">';
-            $html .= '<div>' . $rss_data['alt_text'] . '</div>';
+            $html .= $rss_data['alt_text'];
             $html .= '</div>';
             $html .= '<div class="apod_page_url">';
             $html .= build_link_code($rss_data['post_url']);
             $html .= '</div>';
             break;
         case ($rss_data === false):
-            $html .= '<div class="apod_error">';
+            $html .= '<div class="apod_error" role="dialog">';
             $html .= '<div>' . __('Error retrieving the picture of the day', 'astropix-apod') . '</div>';
             $html .= '<div>' . __('Please contact the plugin developer', 'astropix-apod') . '</div>';
             $html .= '</div>';
@@ -114,7 +118,7 @@ function build_link_code($url)
 
     $html .= __('To see the original post click', 'astropix-apod');
     $html .= ' ';
-    $html .= '<a href="' . $url . '" target="_blank">';
+    $html .= '<a href="' . $url . '" target="_blank" aria-label="' . __('Original post', 'astropix-apod') . '">';
     $html .= __('here', 'astropix-apod');
     $html .= '</a>';
 

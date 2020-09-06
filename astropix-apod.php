@@ -21,7 +21,7 @@
 /**
  * Plugin Name:       Astropix Apod
  * Plugin URI:        https://github.com/riccardo-giovarelli/wordpress-astropix-apod
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Riccardo Giovarelli
  * Author URI:        https://www.riccardogiovarelli.it/
  * Description:		  Show Astronomy Picture of the Day by Nasa with a simple shortcode
@@ -38,7 +38,7 @@ if (!defined('WPINC')) {
 }
 
 // Currently plugin version
-define('PLUGIN_ASTROPIX_APOD_VERSION', '1.0.0');
+define('PLUGIN_ASTROPIX_APOD_VERSION', '1.0.1');
 
 // Required files
 require plugin_dir_path(__FILE__) . 'resources/class-astropix-apod.php';

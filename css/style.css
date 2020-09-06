@@ -9,6 +9,11 @@
   font-size: 1.6em;
 }
 
+.apod_container .apod_date {
+  text-align: center;
+  font-size: 0.9em;
+}
+
 .apod_container .apod_media {
   text-align: center;
   margin: 10px 0px;

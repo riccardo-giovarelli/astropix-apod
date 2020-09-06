@@ -32,11 +32,7 @@ class Astropix_Apod
 	 */
 	public function __construct()
 	{
-		if (defined('PLUGIN_ASTROPIX_APOD_VERSION')) {
-			$this->version = PLUGIN_ASTROPIX_APOD_VERSION;
-		} else {
-			$this->version = '1.0.0';
-		}
+		$this->version = PLUGIN_ASTROPIX_APOD_VERSION;
 
 		$this->astropix_apod = 'astropix-apod';
 
