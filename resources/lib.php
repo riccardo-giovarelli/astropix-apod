@@ -24,7 +24,7 @@
  * 
  * @return  array   Informations about picture of the day
  */
-function get_rss_data($rss_url, $base_url)
+function astropix_apod_get_rss_data($rss_url, $base_url)
 {
     // Regex
     $page_regex = '/href="(?<page_url>[^\"]+)"/i';
@@ -33,7 +33,7 @@ function get_rss_data($rss_url, $base_url)
     $alt_text = '/alt="(?<alt_text>[^\"]+)"/i';
 
     // Get rss content
-    $rss_content = get_html_page($rss_url, 10);
+    $rss_content = astropix_apod_get_html_page($rss_url);
     if ($rss_content === false) return false;
 
     // Get last post url
@@ -41,7 +41,7 @@ function get_rss_data($rss_url, $base_url)
     $result['post_url'] = reset($matched_page_url['page_url']);
 
     // Get page content
-    $page_content = get_html_page(reset($matched_page_url['page_url']), 10);
+    $page_content = astropix_apod_get_html_page(reset($matched_page_url['page_url']));
     if ($page_content === false) return false;
 
     // Get image url
@@ -66,7 +66,7 @@ function get_rss_data($rss_url, $base_url)
  * 
  * @return  array   Html for shortcode
  */
-function build_apod_html($rss_data)
+function astropix_apod_build_apod_html($rss_data)
 {
     wp_enqueue_style("astropix-apod-style", plugins_url("astropix-apod/css/style.css"), array(), time(), "all");
 
@@ -85,13 +85,13 @@ function build_apod_html($rss_data)
     switch (true) {
         case ($rss_data !== false):
             $html .= '<div class="apod_media">';
-            $html .= build_media_code($rss_data);
+            $html .= astropix_apod_build_media_code($rss_data);
             $html .= '</div>';
             $html .= '<div class="apod_label">';
             $html .= $rss_data['alt_text'];
             $html .= '</div>';
             $html .= '<div class="apod_page_url">';
-            $html .= build_link_code($rss_data['post_url']);
+            $html .= astropix_apod_build_link_code($rss_data['post_url']);
             $html .= '</div>';
             break;
         case ($rss_data === false):
@@ -112,7 +112,7 @@ function build_apod_html($rss_data)
  * 
  * @return  array   Html for page link
  */
-function build_link_code($url)
+function astropix_apod_build_link_code($url)
 {
     $html = '';
 
@@ -130,7 +130,7 @@ function build_link_code($url)
  * 
  * @return  array   Html for page media
  */
-function build_media_code($rss_data)
+function astropix_apod_build_media_code($rss_data)
 {
     if (isset($rss_data['image'])) {
         return '<img src="' . $rss_data['image'] . '" alt="' . __('Picture of the day', 'astropix-apod') . '">';
@@ -144,16 +144,10 @@ function build_media_code($rss_data)
  * 
  * @return  string|boolean   Page content on success, false otherwise
  */
-function get_html_page($url, $timeout = 30)
+function astropix_apod_get_html_page($url)
 {
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-    $results = curl_exec($ch);
-    curl_close($ch);
+    $rss_response = wp_remote_get(esc_url_raw($url));
+    $rss_body = wp_remote_retrieve_body($rss_response);
 
-    return $results;
+    return !empty($rss_body) ? $rss_body : false;
 }

@@ -34,10 +34,10 @@ class Astropix_Apod_Rss
     public static function astropix_apod_render()
     {
         // Get informations about picture of the day
-        $rss_data = get_rss_data(self::RSS_URL, self::BASE_URL);
+        $rss_data = astropix_apod_get_rss_data(self::RSS_URL, self::BASE_URL);
 
         // Build the html code to show
-        $html = build_apod_html($rss_data);
+        $html = astropix_apod_build_apod_html($rss_data);
 
         return $html;
     }
