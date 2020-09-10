@@ -1,4 +1,5 @@
 === Astropix Apod ===
+
 Contributors: rgiovarelli
 Tags: astronomy, picture, day, nasa, astropix, apod
 Requires at least: 5.5
@@ -14,9 +15,14 @@ Astropix Apod plugin
 
 Astropix Apod plugin the Astronomy picture of the day by Nasa through a simple shortcode
 
-== Use ==
+= Use =
 
-Simply include the shortcode [astropix-apod] in your page or post
+* Install the plugin
+* Simply include the shortcode [astropix-apod] in your page or post
+
+= Third-party and External service = 
+
+This plugin uses the apod RSS service by Nasa ([Apod RSS](https://apod.nasa.gov/apod.rss "Astronomy Picture of the Day RSS")) to retrieve the Astronomy Picture of the Day and some informations about it. Terms and conditions about Astronomy Picture of the Day images are explained [here](https://apod.nasa.gov/apod/lib/about_apod.html "Astronomy Picture of the Day About Page")
 
 == Contacts ==
 
