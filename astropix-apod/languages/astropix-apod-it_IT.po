@@ -32,12 +32,12 @@ msgid "Picture of the day"
 msgstr "Immagine del giorno"
 
 #: 
-msgid "Please contact the plugin developer"
-msgstr "Si prega di contattare lo sviluppatore del plugin"
+msgid "Please, try later"
+msgstr "Per favore, riprova più tardi"
 
 #: 
-msgid "Error retrieving the picture of the day"
-msgstr "Impossibile recuperare l'immagine del giorno"
+msgid "Ops! Can't find the picture of the day..."
+msgstr "Ops! Non riesco a trovare l'immagine del giorno..."
 
 #: 
 msgid "Original post"

@@ -96,8 +96,8 @@ function astropix_apod_build_apod_html($rss_data)
             break;
         case ($rss_data === false):
             $html .= '<div class="apod_error" role="dialog">';
-            $html .= '<div>' . __('Error retrieving the picture of the day', 'astropix-apod') . '</div>';
-            $html .= '<div>' . __('Please contact the plugin developer', 'astropix-apod') . '</div>';
+            $html .= '<div>' . __("Ops! Can't find the picture of the day...", 'astropix-apod') . '</div>';
+            $html .= '<div>' . __("Please, try later", 'astropix-apod') . '</div>';
             $html .= '</div>';
             break;
     }
