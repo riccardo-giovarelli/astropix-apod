@@ -1,44 +1,59 @@
+# This file is distributed under the same license as the Plugins - Astropix Apod - Stable (latest release) package.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2020-09-14 01:49:53+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
-"Project-Id-Version: astropix-apod\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
 "Language: it\n"
+"Project-Id-Version: Plugins - Astropix Apod - Stable (latest release)\n"
 
-#: 
-msgid "No content available"
-msgstr "Nessun contenuto disponibile"
-
-#: 
-msgid "No page url available"
-msgstr "Url della pagina non disponibile"
-
-#: 
-msgid "To see the original post click"
-msgstr "Per vedere il post originale cliccare"
-
-#: 
-msgid "here"
-msgstr "qui"
-
-#: 
-msgid "Astronomy Picture of the Day"
-msgstr "Astronomy Picture of the Day"
-
-#: 
+#: resources/lib.php:136 resources/lib.php:138
 msgid "Picture of the day"
 msgstr "Immagine del giorno"
 
-#: 
+#: resources/lib.php:122
+msgid "here"
+msgstr "qui"
+
+#: resources/lib.php:121
+msgid "Original post"
+msgstr "Post originale"
+
+#: resources/lib.php:119
+msgid "To see the original post click"
+msgstr "Per vedere il post originale cliccare"
+
+#: resources/lib.php:100
 msgid "Please, try later"
 msgstr "Per favore, riprova più tardi"
 
-#: 
+#: resources/lib.php:99
 msgid "Ops! Can't find the picture of the day..."
 msgstr "Ops! Non riesco a trovare l'immagine del giorno..."
 
-#: 
-msgid "Original post"
-msgstr "Post originale"
+#: resources/lib.php:58
+msgid "Astronomy Picture of the Day"
+msgstr "Astronomy Picture of the Day"
+
+#. Author URI of the plugin
+msgid "https://www.riccardogiovarelli.it/"
+msgstr "https://www.riccardogiovarelli.it/"
+
+#. Author of the plugin
+msgid "Riccardo Giovarelli"
+msgstr "Riccardo Giovarelli"
+
+#. Description of the plugin
+msgid "Show Astronomy Picture of the Day by Nasa with a simple shortcode"
+msgstr "Mostra l'immagine astronomica del giorno della Nasa utilizzando un semplice shortcode"
+
+#. Plugin URI of the plugin
+msgid "https://github.com/riccardo-giovarelli/wordpress-astropix-apod"
+msgstr "https://github.com/riccardo-giovarelli/wordpress-astropix-apod"
+
+#. Plugin Name of the plugin
+msgid "Astropix Apod"
+msgstr "Astropix Apod"
