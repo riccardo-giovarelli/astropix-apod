@@ -21,7 +21,7 @@
 /**
  * Plugin Name:       Astropix Apod
  * Plugin URI:        https://github.com/riccardo-giovarelli/wordpress-astropix-apod
- * Version:           1.0.5
+ * Version:           1.0.6
  * Requires at least: 5.5
  * Author:            Riccardo Giovarelli
  * Author URI:        https://www.riccardogiovarelli.it/
@@ -39,7 +39,7 @@ if (!defined('WPINC')) {
 }
 
 // Currently plugin version
-define('PLUGIN_ASTROPIX_APOD_VERSION', '1.0.5');
+define('PLUGIN_ASTROPIX_APOD_VERSION', '1.0.6');
 
 // Required files
 require plugin_dir_path(__FILE__) . 'resources/class-astropix-apod-rss.php';
