@@ -28,7 +28,7 @@ function astropix_apod_get_rss_data($rss_url, $base_url)
 {
     // Regex
     $page_regex = '/href="(?<page_url>[^\"]+)"/i';
-    $img_regex = '/img\s*src="(?<img_url>[^\"]+)"/i';
+    $img_regex = '/<img\s*src="(?<img_url>.+((\.jpg)|(\.jpeg)|(\.png)|(\.gif)|(\.webp)|(\.tif)|(\.svg)))"\s*/i';
     $video_regex = '/<iframe\s*width="[0-9]+"\s*height="[0-9]+"\s*src="(?<video_url>[^"]+)"/i';
     $alt_text = '/alt="(?<alt_text>[^\"]+)"/i';
 
