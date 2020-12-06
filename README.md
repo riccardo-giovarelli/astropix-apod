@@ -4,14 +4,10 @@
 Show the __Astronomy picture of the day__ by _Nasa_ through a simple shortcode
 
 ## Installation
-The plugin is available on WordPress plugin directory [here](https://it.wordpress.org/plugins/astropix-apod/).
+Download the plugin from the releases list and install in your WordPress
 
 ## Use
 Simply include the shortcode `[astropix-apod]` in your page or post
-
-## Main requirements
-
-WordPress 5.5+
 
 ## Authors
 
